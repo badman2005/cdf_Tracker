@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National CDF Reports | Republic of Zambia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Calibri', 'Arial', sans-serif; background-color: #f8fafc; color: #1a202c; }
+        .zambia-ribbon {
+            background: linear-gradient(90deg, #198A00 25%, #DE2010 25%, #DE2010 50%, #000000 50%, #000000 75%, #EF7D00 75%);
+            height: 4px;
+        }
+        .report-card { transition: all 0.3s ease; border: 1px solid #e2e8f0; }
+        .report-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-color: #198A00; }
+    </style>
+</head>
+<body>
+
+    <div class="zambia-ribbon"></div>
+
+    <header class="bg-white border-b border-gray-200 py-4 shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-gray-100 rounded flex items-center justify-center border border-gray-200 text-[8px] text-center font-bold uppercase p-1 font-mono">
+                    Coat of Arms
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-900 leading-tight">Republic of Zambia</h1>
+                    <p class="text-xs text-gray-600">CDF Transparency & Audit Portal</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex gap-8 font-semibold text-gray-700">
+                <a href="index.html" class="hover:text-[#198A00] transition">Dashboard</a>
+                <a href="constituencies.html" class="hover:text-[#198A00] transition">Constituencies</a>
+                <a href="reports.html" class="text-[#198A00] border-b-2 border-[#198A00] pb-1">Reports</a>
+            </nav>
+            <button class="bg-black text-white px-5 py-2 rounded text-sm font-bold shadow-md hover:bg-gray-800 transition">
+                Export Data
+            </button>
+        </div>
+    </header>
+
+    <section class="bg-[#1a202c] text-white py-12">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-2">Transparency & Accountability Reports</h2>
+            <p class="text-gray-400 max-w-2xl italic text-sm">Download official expenditure reports, audit summaries, and community impact assessments for the 2024/2025 fiscal year.</p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 -mt-8 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#198A00]">
+                <p class="text-xs text-gray-500 uppercase font-bold">Total Disbursed (Q1-Q4)</p>
+                <h4 class="text-2xl font-black mt-1">ZMK 4.8B</h4>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#EF7D00]">
+                <p class="text-xs text-gray-500 uppercase font-bold">Audit Completion</p>
+                <h4 class="text-2xl font-black mt-1">92%</h4>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#DE2010]">
+                <p class="text-xs text-gray-500 uppercase font-bold">Flagged Projects</p>
+                <h4 class="text-2xl font-black mt-1 text-red-600">03</h4>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-blue-500">
+                <p class="text-xs text-gray-500 uppercase font-bold">Public Complaints</p>
+                <h4 class="text-2xl font-black mt-1">42</h4>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-4">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <i class="fas fa-file-pdf text-red-500"></i> Published Documents
+                </h3>
+                
+                <div class="report-card bg-white p-6 rounded-xl flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-red-50 rounded-lg"><i class="fas fa-file-pdf text-2xl text-red-600"></i></div>
+                        <div>
+                            <h5 class="font-bold text-gray-800">2024 Annual CDF Audit Summary</h5>
+                            <p class="text-xs text-gray-500">Released: Dec 2024 • Size: 4.2 MB • Verified by Auditor General</p>
+                        </div>
+                    </div>
+                    <button class="text-[#198A00] font-bold hover:underline">Download</button>
+                </div>
+
+                <div class="report-card bg-white p-6 rounded-xl flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-green-50 rounded-lg"><i class="fas fa-file-excel text-2xl text-green-600"></i></div>
+                        <div>
+                            <h5 class="font-bold text-gray-800">Quarterly Expenditure Dataset (Q3)</h5>
+                            <p class="text-xs text-gray-500">Released: Oct 2024 • Size: 1.8 MB • Raw Data (CSV)</p>
+                        </div>
+                    </div>
+                    <button class="text-[#198A00] font-bold hover:underline">Download</button>
+                </div>
+
+                <div class="report-card bg-white p-6 rounded-xl flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-blue-50 rounded-lg"><i class="fas fa-chart-pie text-2xl text-blue-600"></i></div>
+                        <div>
+                            <h5 class="font-bold text-gray-800">Community Impact Assessment Report</h5>
+                            <p class="text-xs text-gray-500">Released: Aug 2024 • Size: 12.5 MB • Includes Photos</p>
+                        </div>
+                    </div>
+                    <button class="text-[#198A00] font-bold hover:underline">Download</button>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h5 class="font-bold mb-4 text-sm uppercase text-gray-500 tracking-wider">Allocation by Sector</h5>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1"><span>Infrastructure</span><span class="font-bold">45%</span></div>
+                            <div class="w-full bg-gray-100 h-2 rounded-full"><div class="bg-[#198A00] h-2 rounded-full" style="width: 45%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1"><span>Empowerment</span><span class="font-bold">30%</span></div>
+                            <div class="w-full bg-gray-100 h-2 rounded-full"><div class="bg-[#EF7D00] h-2 rounded-full" style="width: 30%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1"><span>Education/Bursaries</span><span class="font-bold">25%</span></div>
+                            <div class="w-full bg-gray-100 h-2 rounded-full"><div class="bg-blue-500 h-2 rounded-full" style="width: 25%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#198A00] p-6 rounded-xl text-white shadow-lg shadow-green-100">
+                    <h5 class="font-bold mb-2">Request Custom Data</h5>
+                    <p class="text-xs opacity-80 mb-4">Can't find the report you need? Submit a formal request to the Ministry.</p>
+                    <button class="w-full bg-white text-[#198A00] py-2 rounded font-bold text-sm uppercase">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 border-t-4 border-[#EF7D00]">
+        <div class="container mx-auto px-6 text-center text-xs text-gray-500">
+            &copy; 2025 Republic of Zambia | CDF Transparency & Accountability Framework
+        </div>
+    </footer>
+
+</body>
+</html>
