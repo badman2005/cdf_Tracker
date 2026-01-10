@@ -11,22 +11,21 @@
     <style>
         body { font-family: 'Calibri', 'Arial', sans-serif; background-color: #f8fafc; color: #1a202c; }
         
-        /* Official Zambian Ribbon */
         .zambia-ribbon {
             background: linear-gradient(90deg, #198A00 25%, #DE2010 25%, #DE2010 50%, #000000 50%, #000000 75%, #EF7D00 75%);
             height: 4px;
         }
 
-        /* Card Hover Effects */
-        .glass-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .glass-card { transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; }
+        .glass-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1); }
+
+        /* Stylized Map Background */
+        .map-placeholder {
+            background-color: #e2e8f0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        /* Custom scrollbar for better UI */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #198A00; border-radius: 10px; }
     </style>
@@ -49,13 +48,14 @@
             
             <div class="flex items-center gap-6">
                 <nav class="hidden md:flex gap-8 font-semibold text-gray-700">
+                    <a href="index.html" class="hover:text-[#198A00] transition">Dashboard</a>
                     <a href="#" class="text-[#198A00] border-b-2 border-[#198A00] pb-1">Constituencies</a>
                     <a href="reports.html" class="hover:text-[#198A00] transition">Reports</a>
-                    <a href="#" class="hover:text-[#198A00] transition">Guidelines</a>
+                    <a href="{{ url_for('LiveMap') }}">LiveMap</a>
                 </nav>
-                <button class="bg-[#EF7D00] text-white px-5 py-2 rounded font-bold shadow-md hover:bg-orange-600 transition">
-                    Citizen Login
-                </button>
+               <a href="{{ url_for('apply') }}" class="hover:text-[#198A00] transition-colors">
+    Apply Now
+</a>
             </div>
         </div>
     </header>
@@ -63,7 +63,7 @@
     <section class="bg-[#198A00] text-white py-16">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-extrabold mb-2">Constituency Tracker 2025</h2>
-            <p class="mb-10 opacity-90 text-xl italic">"Real-time monitoring of CDF projects across the nation."</p>
+            <p class="mb-10 opacity-90 text-xl italic text-gray-100">"Public verification of infrastructure development."</p>
             
             <div class="max-w-5xl bg-white rounded-xl p-2 flex flex-col md:flex-row shadow-2xl gap-2">
                 <input type="text" id="constSearch" onkeyup="filterConst()" placeholder="Search by Constituency name..." class="flex-1 p-4 text-gray-800 outline-none rounded-lg text-lg">
@@ -75,8 +75,6 @@
                         <option value="Copperbelt">Copperbelt</option>
                         <option value="Southern">Southern</option>
                         <option value="Central">Central</option>
-                        <option value="Northern">Northern</option>
-                        <option value="Western">Western</option>
                     </select>
                     <button class="bg-black text-white px-10 py-4 rounded-lg font-bold hover:bg-gray-800 transition uppercase tracking-wider">
                         Filter
@@ -94,31 +92,25 @@
     <footer class="bg-gray-900 text-white py-12 border-t-4 border-[#EF7D00]">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
-                <h5 class="text-xl font-bold">CDF tracker prototype</h5>
+                <h5 class="text-xl font-bold italic">Kwidila Portal</h5>
                 <p class="text-gray-400 text-sm mt-1">Mulungushi University Capstone Project 2025</p>
             </div>
-            <div class="flex gap-6 text-sm">
-                <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
-                <a href="#" class="text-gray-400 hover:text-white">Terms of Use</a>
-            </div>
             <div class="text-gray-500 text-xs text-center">
-                &copy; 2025 Republic of Zambia. All Rights Reserved.
+                &copy; 2025 Republic of Zambia. Built for Transparency.
             </div>
         </div>
     </footer>
 
     <script>
-        // Expanded Dataset for demonstration
         const constituencyData = [
-            { name: "Munali", province: "Lusaka", projects: 14, budget: "22.4M", util: 82, status: "Active" },
-            { name: "Kanyama", province: "Lusaka", projects: 11, budget: "19.8M", util: 65, status: "Active" },
-            { name: "Nkana", province: "Copperbelt", projects: 9, budget: "15.2M", util: 88, status: "Active" },
-            { name: "Livingstone", province: "Southern", projects: 12, budget: "18.5M", util: 74, status: "Active" },
-            { name: "Choma Central", province: "Southern", projects: 8, budget: "12.1M", util: 91, status: "Active" },
-            { name: "Kabwe Central", province: "Central", projects: 10, budget: "16.7M", util: 70, status: "Active" }
+            { name: "Munali", province: "Lusaka", projects: 14, budget: "22.4M", util: 82 },
+            { name: "Kanyama", province: "Lusaka", projects: 11, budget: "19.8M", util: 65 },
+            { name: "Nkana", province: "Copperbelt", projects: 9, budget: "15.2M", util: 88 },
+            { name: "Livingstone", province: "Southern", projects: 12, budget: "18.5M", util: 74 },
+            { name: "Choma Central", province: "Southern", projects: 8, budget: "12.1M", util: 91 },
+            { name: "Kabwe Central", province: "Central", projects: 10, budget: "16.7M", util: 70 }
         ];
 
-        // Filter and Render Logic
         function filterConst() {
             const search = document.getElementById('constSearch').value.toLowerCase();
             const prov = document.getElementById('provFilter').value;
@@ -135,48 +127,58 @@
             const grid = document.getElementById('constGrid');
             
             if(data.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-20 text-center text-gray-500 text-xl font-bold">No constituencies found matching your criteria.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-20 text-center text-gray-500 text-xl font-bold">No records found.</div>`;
                 return;
             }
 
             grid.innerHTML = data.map(c => `
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-[#198A00] glass-card flex flex-col justify-between">
-                    <div>
+                <div class="bg-white rounded-2xl shadow-lg border-t-8 border-[#198A00] glass-card flex flex-col">
+                    <div class="h-32 map-placeholder relative group flex items-center justify-center overflow-hidden">
+                        <i class="fas fa-map-marked-alt text-slate-300 text-4xl"></i>
+                        <a href="map.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-widest">
+                            <i class="fas fa-search-location mr-2"></i> Open Live Tracker
+                        </a>
+                    </div>
+
+                    <div class="p-6">
                         <div class="flex justify-between items-start mb-6">
                             <h3 class="text-2xl font-black text-gray-900">${c.name}</h3>
-                            <span class="bg-gray-100 text-gray-800 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">${c.province}</span>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-black px-3 py-1 rounded-full uppercase">${c.province}</span>
                         </div>
                         
                         <div class="space-y-4 mb-8">
                             <div class="flex justify-between items-center border-b border-gray-50 pb-2">
-                                <span class="text-gray-500 font-bold text-sm uppercase">Active Projects</span>
+                                <span class="text-gray-500 font-bold text-xs uppercase tracking-tight">Active Projects</span>
                                 <span class="text-xl font-black text-gray-800">${c.projects}</span>
                             </div>
                             <div class="flex justify-between items-center border-b border-gray-50 pb-2">
-                                <span class="text-gray-500 font-bold text-sm uppercase">Total Funding</span>
+                                <span class="text-gray-500 font-bold text-xs uppercase tracking-tight">Total Funding</span>
                                 <span class="text-xl font-black text-blue-600">ZMK ${c.budget}</span>
                             </div>
                             <div class="pt-2">
                                 <div class="flex justify-between items-center mb-2">
-                                    <span class="text-gray-500 font-bold text-xs uppercase">Fund Utilization</span>
+                                    <span class="text-gray-500 font-bold text-xs uppercase">Utilization</span>
                                     <span class="text-xs font-black text-[#198A00]">${c.util}%</span>
                                 </div>
-                                <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
-                                    <div class="bg-[#198A00] h-full transition-all duration-1000" style="width: ${c.util}%"></div>
+                                <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-[#198A00] h-full" style="width: ${c.util}%"></div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="flex gap-2">
+                            <a href="audit.html" class="flex-1 py-4 bg-gray-900 text-white rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-black transition-colors text-center">
+                                View Audit Proof
+                            </a>
+                            <a href="map.html" class="px-5 py-4 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-location-arrow"></i>
+                            </a>
+                        </div>
                     </div>
-                    
-                    <button class="w-full py-4 bg-gray-900 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-black transition-colors flex items-center justify-center gap-2">
-                        <span>Detailed Audit</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
                 </div>
             `).join('');
         }
 
-        // Initial Load
         window.onload = () => renderCards(constituencyData);
     </script>
 </body>

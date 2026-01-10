@@ -78,11 +78,13 @@
                 <h3 class="text-3xl font-black mt-1">1,402</h3>
                 <span class="text-gray-400 text-xs font-bold">In 156 Constituencies</span>
             </div>
-            <a href="audit.html" class="bg-white p-6 rounded-2xl shadow-xl border-b-4 border-blue-600 stat-card block hover:bg-blue-50 transition">
-                <p class="text-gray-500 font-bold text-xs uppercase tracking-wider">Audit Rating</p>
-                <h3 class="text-3xl font-black mt-1 text-blue-600">Grade A</h3>
-                <span class="text-blue-500 text-xs font-bold"><i class="fas fa-external-link-alt mr-1"></i> View Blockchain Ledger</span>
-            </a>
+           <a href="{{ url_for('audits') }}" class="bg-white p-6 rounded-2xl shadow-xl border-b-4 border-blue-600 stat-card block hover:bg-blue-50 transition">
+    <p class="text-gray-500 font-bold text-xs uppercase tracking-wider">Audit Rating</p>
+    <h3 class="text-3xl font-black mt-1 text-blue-600">Grade A</h3>
+    <span class="text-blue-500 text-xs font-bold">
+        <i class="fas fa-external-link-alt mr-1"></i> View Blockchain Ledger
+    </span>
+</a>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
