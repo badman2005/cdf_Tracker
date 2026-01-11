@@ -5,11 +5,12 @@ def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row 
     return conn
-#setting up the tables
+
+# Setting up the tables
 def init_db():
     conn = get_db_connection()
     cursor = conn.cursor()
-    # We added 'data_hash' to store the digital fingerprint
+    # Added map and image columns for full transparency
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS applications (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,11 +19,17 @@ def init_db():
             category TEXT,
             receipt_id TEXT,
             data_hash TEXT, 
+            title TEXT,
+            constituency TEXT,
+            lat REAL,
+            lng REAL,
+            image_url TEXT,
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     conn.commit()
     conn.close()
+
 if __name__ == '__main__':
     init_db()
-    print("✓ Database file 'database.db' created and table initialized.")
+    print("✓ Database initialized with Map and Photo support.")

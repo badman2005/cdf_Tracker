@@ -1,4 +1,12 @@
-database.db
+# Python junk
 __pycache__/
 *.pyc
+
+# Database (We usually keep this local)
+database.db
+
+# Uploaded images (Don't push huge images to GitHub)
+static/uploads/*
+
+# Environment variables
 .env
